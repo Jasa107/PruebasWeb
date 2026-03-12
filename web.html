@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriverFree | Tu viaje, tus reglas</title>
+
+    <style>
+        /* :root guarda variables de colores para cambiarlos fácilmente en el futuro */
+        :root {
+            --color-primario: #FF7A00;   /* Naranja cálido (energía y delivery) */
+            --color-secundario: #FFB800; /* Amarillo ámbar (taxis clásicos, modernizado) */
+            --fondo-principal: #121212;  /* Negro premium para el fondo */
+            --fondo-tarjetas: #1E1E1E;   /* Gris oscuro para resaltar elementos */
+            --texto-claro: #F3F4F6;      /* Blanco suave para lectura cómoda */
+        }
+
+        /* Reseteo básico para que se vea igual en todos los navegadores */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Estilo general del cuerpo de la página */
+        body {
+            background-color: var(--fondo-principal);
+            color: var(--texto-claro);
+        }
+
+        /* --- BARRA DE NAVEGACIÓN (HEADER) --- */
+        header {
+            display: flex; /* Alinea los elementos en fila */
+            justify-content: space-between; /* Separa el logo de los botones */
+            align-items: center; /* Centra verticalmente */
+            padding: 20px 5%; /* Espaciado interno */
+            background-color: rgba(18, 18, 18, 0.9); /* Fondo semi-transparente */
+            position: fixed; /* Deja el menú fijo arriba al hacer scroll */
+            width: 100%;
+            top: 0;
+            z-index: 1000; /* Asegura que esté por encima de todo */
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--texto-claro);
+        }
+
+        .logo span {
+            color: var(--color-primario); /* Resalta la palabra 'Free' */
+        }
+
+        /* Botón general premium */
+        .btn-premium {
+            background: linear-gradient(45deg, var(--color-primario), var(--color-secundario));
+            color: #000; /* Texto negro para contrastar con colores cálidos */
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px; /* Bordes muy redondeados */
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease; /* Animación suave al pasar el ratón */
+        }
+
+        .btn-premium:hover {
+            transform: scale(1.05); /* Se agranda un 5% al pasar el ratón */
+        }
+
+        /* --- SECCIÓN PRINCIPAL (HERO) --- */
+        .hero {
+            text-align: center;
+            padding: 150px 20px 80px 20px; /* Espacio extra arriba por el menú fijo */
+            background: radial-gradient(circle at center, #2a1604, var(--fondo-principal)); /* Brillo cálido de fondo */
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #A0A0A0; /* Gris claro para el texto secundario */
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- SECCIÓN DE SERVICIOS (TARJETAS) --- */
+        .servicios {
+            display: flex;
+            justify-content: center;
+            gap: 30px; /* Espacio entre tarjetas */
+            padding: 50px 5%;
+            flex-wrap: wrap; /* Si la pantalla es pequeña, bajan a la siguiente línea */
+        }
+
+        .tarjeta {
+            background-color: var(--fondo-tarjetas);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            width: 300px;
+            border-top: 4px solid var(--color-primario); /* Línea cálida decorativa */
+            transition: 0.3s;
+        }
+
+        .tarjeta:hover {
+            transform: translateY(-10px); /* La tarjeta "salta" hacia arriba al pasar el ratón */
+            box-shadow: 0 10px 20px rgba(255, 122, 0, 0.2); /* Sombra cálida */
+        }
+
+        .icono {
+            font-size: 4rem; /* Tamaño de los emojis/iconos */
+            margin-bottom: 20px;
+        }
+
+        .tarjeta h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Driver<span>Free</span></div>
+        <button class="btn-premium" id="btn-registro">Unirse ahora</button>
+    </header>
+
+    <section class="hero">
+        <h1>Movilidad y Delivery <br> <span style="color: var(--color-primario);">a tu manera</span></h1>
+        <p>Conectamos pasajeros y envíos con la red de conductores más segura. Ya sea en moto o en carro, tú tienes el control.</p>
+        <button class="btn-premium" onclick="mostrarAlertaDescarga()">Descargar la App</button>
+    </section>
+
+    <section class="servicios">
+        
+        <div class="tarjeta">
+            <div class="icono">🛵</div>
+            <h3>Moto Taxi</h3>
+            <p>Rapidez total para evitar el tráfico. Llega a tu destino en tiempo récord de forma segura.</p>
+        </div>
+
+        <div class="tarjeta">
+            <div class="icono">🚕</div>
+            <h3>Carro Particular</h3>
+            <p>Comodidad y espacio para tus viajes diarios o salidas especiales. Confort garantizado.</p>
+        </div>
+
+        <div class="tarjeta">
+            <div class="icono">📦</div>
+            <h3>Delivery Express</h3>
+            <p>Envía o recibe paquetes el mismo día. Tus encomiendas siempre en buenas manos.</p>
+        </div>
+
+    </section>
+
+    <script>
+        // Esta función se ejecuta al hacer clic en el botón "Descargar la App"
+        function mostrarAlertaDescarga() {
+            // Un simple mensaje de alerta. A futuro, aquí pondremos el link de descarga
+            alert("¡Próximamente! La aplicación DriverFree estará disponible muy pronto para Android e iOS.");
+        }
+
+        // Aquí capturamos el botón del menú de arriba usando su ID
+        const botonRegistro = document.getElementById("btn-registro");
+
+        // Le añadimos un "escuchador de eventos" para que detecte cuando le hacen clic
+        botonRegistro.addEventListener("click", function() {
+            // A futuro, esto abrirá el formulario que vamos a diseñar.
+            // Por ahora, le damos un saludo interactivo.
+            alert("¡Excelente decisión! El módulo de registro de conductores se cargará aquí.");
+        });
+    </script>
+
+</body>
+</html>
